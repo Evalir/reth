@@ -271,6 +271,10 @@ where
     /// we're not on the canonical chain and we need to revert the notification with the ExEx
     /// head block.
     fn check_canonical(&mut self) -> eyre::Result<Option<ExExNotification>> {
+        debug!(target: "exex::notifications", "starting canonical check");
+        let is_known_hash = self.provider.is_known(&self.exex_head.block.hash)?;
+        let is_known_bn = self.exex_head.block.number <= self.node_head.number;
+        debug!(target: "exex::notifications", is_known_hash = is_known_hash, is_known_bn = is_known_bn, exex_num = self.exex_head.block.number, host_num = self.node_head.number, "canonical check results");
         if self.provider.is_known(&self.exex_head.block.hash)? &&
             self.exex_head.block.number <= self.node_head.number
         {

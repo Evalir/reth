@@ -21,7 +21,7 @@ use tokio::task::JoinHandle;
 use super::job::BackfillJobResult;
 
 /// The default parallelism for active tasks in [`StreamBackfillJob`].
-pub(crate) const DEFAULT_PARALLELISM: usize = 4;
+pub(crate) const DEFAULT_PARALLELISM: usize = 1;
 /// The default batch size for active tasks in [`StreamBackfillJob`].
 const DEFAULT_BATCH_SIZE: usize = 100;
 
